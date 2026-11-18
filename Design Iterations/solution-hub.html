@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solution Hub — Design Iterations</title>
+<link rel="stylesheet" href="site.css">
+<style>
+  h2{font:800 22px/30px "Nexa Text","Noto Sans",Arial,sans-serif;margin:0 0 4px;color:var(--ink)}
+  h3{font:700 14px/20px "Nexa Text","Noto Sans",Arial,sans-serif;margin:22px 0 6px;color:var(--text);letter-spacing:.02em}
+  p{margin:0 0 10px}
+  .sub{color:var(--text);font-size:14px;margin-bottom:28px}
+  .meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--text);font-size:13px;margin-bottom:24px}
+  .meta b{color:var(--ink);font-weight:700}
+  .card{border:1px solid var(--line);border-radius:6px;padding:20px 24px;margin:0 0 20px;background:#fff}
+  .method{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0 4px}
+  .step{background:var(--fill);border-radius:6px;padding:12px 14px;font-size:13px;line-height:19px}
+  .step b{display:block;color:var(--blue);font-size:12px;margin-bottom:4px}
+  table{border-collapse:collapse;width:100%;font-size:13px;line-height:19px}
+  th{text-align:left;background:var(--fill);color:var(--text);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .sec{margin-top:44px;padding-top:28px;border-top:2px solid var(--line)}
+  .num{display:inline-block;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--soft);color:var(--blue);font:700 13px/28px "Nexa Text","Noto Sans",Arial,sans-serif;text-align:center;margin-right:10px;vertical-align:middle}
+  .q{background:var(--fill);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0 16px;color:var(--ink)}
+  .q span{color:var(--text);font-size:12px;display:block;margin-bottom:2px}
+  figure{margin:14px 0 18px}
+  figure img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+  figcaption{font-size:12px;line-height:18px;color:var(--text);margin-top:6px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .decision{border:1px solid #7cde9a;background:var(--greenfill);border-radius:6px;padding:12px 16px;margin-top:14px}
+  .decision b{color:var(--green)}
+  ul{margin:0 0 10px 18px;padding:0}li{margin:0 0 4px}
+  .pill{display:inline-block;height:22px;padding:0 10px;border-radius:999px;background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a;font:400 12px/22px "Nexa Text","Noto Sans",Arial,sans-serif}
+  .pill.grey{background:var(--fill);color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+  code{font:12px/18px ui-monospace,Menlo,monospace;background:var(--fill);padding:1px 5px;border-radius:3px}
+  @media print{
+    .sec{break-before:page}
+    @page{size:A4 landscape;margin:12mm}
+    body{font-size:12px;line-height:18px}
+
+    .sec{break-before:page;border-top:none;margin-top:0;padding-top:0}
+    figure,.decision,tr{break-inside:avoid}
+
+    .method{gap:8px}.step{font-size:11px;line-height:16px}
+    a{color:#086ae3;text-decoration:underline}
+  }
+
+  .content .card h2{font:800 22px/30px var(--font)}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="images/equinix-logo.png" alt="Equinix"><span>DESIGN ITERATIONS</span></a>
+  <span class="version">v2026.11.18</span>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="index.html" class="active">Solution Designer</a>
+    <a href="ai-projects.html">AI Projects</a>
+    <a href="../Solution%20Designer.html" class="ext" target="_blank" rel="noopener">Prototype</a>
+  </nav>
+  <label class="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="navSearch" type="search" placeholder="Search" aria-label="Search this log"></label>
+</header>
+<div class="doc">
+  <aside class="leftnav" id="leftnav">
+    <div class="grp">Solution Hub <span class="chev"></span></div>
+    <div class="sub"><a class="item" href="#method">Working method</a><a class="item" href="#glance">Decisions at a glance</a><a class="item" href="#d1">Casing and dates<small>Decision 1</small></a><a class="item" href="#d2">IBX column<small>Decision 2</small></a><a class="item" href="#d3">Button sizes<small>Decision 3</small></a><a class="item" href="#d4">Page layout and pagination<small>Decision 4</small></a><a class="item" href="#d5">Toolbar alignment<small>Decision 5</small></a><a class="item" href="#d6">Filter control styling<small>Decision 6</small></a><a class="item" href="#d7">December Fabric One review<small>Decision 7</small></a><a class="item" href="#d8">Quick filters vs drawer<small>Decision 8</small></a><a class="item" href="#d9">Flat view status<small>Decision 9</small></a><a class="item" href="#appendix">Appendix</a></div>
+    <a class="grp plain" href="solution-summary.html" style="text-decoration:none">Solution Summary <span class="chev"></span></a>
+    <a class="grp plain" href="solution-proposal.html" style="text-decoration:none">Solution Proposal <span class="chev"></span></a>
+    <a class="grp plain" href="whiteboard.html" style="text-decoration:none">Whiteboard <span class="chev"></span></a><a class="grp plain" href="builder-integration.html" style="text-decoration:none">Builder Integration <span class="chev"></span></a>
+  </aside>
+  <main class="content">
+    <a class="open" href="Solution%20Hub%20Decision%20Log.pdf" title="Download as PDF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg></a>
+    <h1 class="big">Solution Hub</h1>
+    <p class="lede">How the hub page of the Solution Designer prototype was aligned to QUIX and the Equinix Customer Portal (ECP), decision by decision, with the options that were considered and why each one was chosen.</p>
+    <div class="kv"><div><b>Prototype</b> 2026_1116 / Solution Designer.html</div><div><b>Period</b> November 17–18, 2026</div><div><b>Owner</b> Equinix UX, Solution Designer</div><div><b>Method</b> AI-assisted design review with Claude, decisions made by the designer</div></div>
+<div class="card" style="padding:14px 24px">
+  <p style="margin:0"><b>Design system followed.</b> All component sizes, colours and patterns in this log come from QUIX, the Equinix design system:
+  the documentation at <a href="https://quix.equinix.com/40184d3a9/p/022459-quix-design-system">quix.equinix.com — QUIX Design System</a>
+  and the Figma library <a href="https://www.figma.com/design/ZQE9aXwYyHHoqrWbjOysn6/%F0%9F%A7%A9-QUIX-Component-Library-v2?m=auto&node-id=356-0">🧩 QUIX Component Library v2</a>.
+  Where the documentation example and the live ECP implementation differed, ECP was followed, and the log says so.</p>
+</div>
+
+<div class="card" id="method">
+  <h2>Working method</h2>
+  <p>Every change below followed the same loop. The point of recording it is that the reasoning can be checked, not just the outcome.</p>
+  <div class="method">
+    <div class="step"><b>1 · Question</b>The designer raises a concern in plain words, usually with a screenshot of ECP for comparison.</div>
+    <div class="step"><b>2 · Evidence</b>Read the QUIX component spec from the Figma library, measure the prototype in the browser, and measure ECP at the same scale.</div>
+    <div class="step"><b>3 · Options</b>Mock each candidate on the live prototype by injecting styles, render all of them at 1440px side by side.</div>
+    <div class="step"><b>4 · Decision</b>The designer picks; the assistant states a recommendation and the trade-off, never silently.</div>
+    <div class="step"><b>5 · Verify</b>Build it, then measure again in the browser: sizes, colours, sorting, console errors.</div>
+  </div>
+</div>
+
+<div class="card" id="glance">
+  <h2>Decisions at a glance</h2>
+  <table>
+    <tr><th style="width:36px">#</th><th style="width:26%">Topic</th><th>Decision</th><th style="width:30%">Main reason</th></tr>
+    <tr><td>1</td><td>Text casing and dates</td><td>Title Case for labels, headers, buttons and badges; sentence case for cell data; dates as <code>Nov 17, 2026 18:56 GMT</code></td><td>QUIX content guideline, with the live ECP date format taking precedence over the docs example</td></tr>
+    <tr><td>2</td><td>IBX column</td><td>Show at most two IBX tags, then an ellipsis tag that opens the details drawer</td><td>Keeps rows one line tall; full list lives in the drawer</td></tr>
+    <tr><td>3</td><td>Button sizes</td><td>Toolbar controls at QUIX Small (32px); everything else stays Medium (36px) like ECP</td><td>Measured: ECP and the prototype were both Medium. Small chosen for density in the toolbar</td></tr>
+    <tr><td>4</td><td>Page layout and pagination</td><td>Grey page, one white card holding toolbar, table and an ECP-style pagination footer</td><td>Matches ECP Fabric One and the QUIX Data Table pattern</td></tr>
+    <tr><td>5</td><td>Toolbar alignment</td><td>Expand / Collapse becomes an outline button; both right-hand rows share one fixed-width cluster</td><td>Clean edges; the short label frees the width the bolder Sort value needs</td></tr>
+    <tr><td>6</td><td>Filter control styling</td><td>Sort and Filters use the QUIX Data Filters pattern; Collapse keeps the outline button</td><td>That is the component ECP uses in its filter bar; buttons stay buttons</td></tr>
+    <tr><td>7</td><td>December Fabric One review</td><td>Sort indicators on sortable headers; badges to 24px; layout confirmed</td><td>New ECP designs confirm the card layout and pagination already built</td></tr>
+    <tr><td>8</td><td>Quick filters vs drawer</td><td>Keep both; rename tiles "Proposal Status"; chips show drawer-only filters; quick filters grouped at the top of the drawer</td><td>Inline plus drawer is the ECP pattern; the only redundancy was the chips</td></tr>
+    <tr><td>9</td><td>Flat view status</td><td>Split into Proposal Status and Option Status columns, each sortable</td><td>Stacked badges contradicted each other and broke one-value-per-cell and sorting</td></tr>
+  </table>
+</div>
+
+<!-- 1 -->
+<section class="sec" id="d1">
+  <h2><span class="num">1</span>Text casing and date format</h2>
+  <div class="q"><span>Question raised</span>Some text is upper case, some lower case. What is the best practice, and should dates follow the QUIX docs or the ECP portal?</div>
+  <h3>Evidence</h3>
+  <ul>
+    <li>QUIX content guideline: table headers in Title Case, one to three words; data cells in sentence case; one value per cell; dates as "Month Day, Year".</li>
+    <li>ECP Share Solution drawer: Title Case for titles, field labels, buttons and tabs; sentence case for body copy and helper text.</li>
+    <li>ECP Solution Builder table: dates rendered as <code>Nov 17, 2026 18:56 GMT</code>, abbreviated month, zero-padded day, 24-hour time, GMT label.</li>
+  </ul>
+  <h3>Options considered</h3>
+  <ul>
+    <li>Follow the QUIX docs example literally, "November 17, 2026" with the full month.</li>
+    <li>Follow the live ECP implementation, which uses the abbreviated month and a timestamp with GMT.</li>
+    <li>Split multi-value status cells per the one-value rule (deferred; see decision 9).</li>
+  </ul>
+  <figure><img src="images/dates-ecp-format.png" alt="Cases table with Date/Time Opened in ECP format"><figcaption>Cases table after the change. "Date/Time Opened" reads <code>Oct 25, 2026 23:47 GMT</code>; date-only fields such as Customer Requested Date read <code>Dec 15, 2026</code>.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Title Case for every label-like element including status badges; sentence case for data cells, descriptions and helper text; dates follow ECP because the prototype will live inside ECP. Relative times such as "6d ago" stay relative. Status badges were explicitly kept in Title Case and not split at this stage.</div>
+</section>
+
+<!-- 2 -->
+<section class="sec" id="d2">
+  <h2><span class="num">2</span>IBX column: two tags, then an ellipsis</h2>
+  <div class="q"><span>Question raised</span>For this column we show max two IBX. If more, show "…" and let the user open the side drawer to see the details.</div>
+  <h3>Evidence</h3>
+  <p>Multi-site solutions produced three or more IBX tags in one cell, which wrapped the row to two lines and broke the table rhythm. The details drawer already lists every site per option.</p>
+  <figure><img src="images/ibx-ellipsis.png" alt="Kestrel Energy row showing DC12, DC11 and an ellipsis tag"><figcaption>Kestrel Energy spans four sites: the row shows DC12, DC11 and an "…" tag. The tooltip lists the hidden codes and clicking the tag opens the solution details drawer.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Show the first two distinct IBX tags. Any remainder collapses into a 24px ellipsis tag with a tooltip and an accessible label ("2 more IBX, open solution details"), which opens the drawer. The column was widened from 112px to 168px so two tags and the ellipsis fit without clipping.</div>
+</section>
+
+<!-- 3 -->
+<section class="sec" id="d3">
+  <h2><span class="num">3</span>Button sizes against ECP</h2>
+  <div class="q"><span>Question raised</span>I think our buttons are bigger than ECP. QUIX buttons have different sizes; keep the same size as ECP. Then: try Small so I can compare.</div>
+  <h3>Evidence</h3>
+  <ul>
+    <li>QUIX button-solid / button-outline / button-toggle specs read from the library: Large 40px with 16px Bold label, Medium 36px with 14px Bold, Small 32px with 12px Bold and 12px side padding.</li>
+    <li>Prototype measured in the browser at 1440px: New Design, Filters, Collapse and the toggle groups were all 36px with 14px Nexa Text Bold, i.e. QUIX Medium. Nexa Text is installed, so the font renders as in ECP.</li>
+    <li>Both screenshots normalised using the 60px QUIX global header as a ruler: the prototype's New Design measured 36.3px and ECP's Create Interconnect 35.6px. The perceived difference came from screenshot zoom, not from the buttons.</li>
+  </ul>
+  <div class="two">
+    <figure><img src="images/hub-before-medium.png" alt="Prototype hub before, at Medium"><figcaption>Prototype as captured by the designer (about 1.2x zoom).</figcaption></figure>
+    <figure><img src="images/ecp-fabric-one-live.png" alt="ECP Fabric One live page"><figcaption>ECP Fabric One live page as captured (about 0.94x). Same 36px buttons once normalised.</figcaption></figure>
+  </div>
+  <figure><img src="images/toolbar-medium-vs-small.png" alt="Toolbar at Medium versus Small"><figcaption>The same toolbar rendered at QUIX Medium (top) and QUIX Small (bottom) on the live prototype, one filter applied.</figcaption></figure>
+  <h3>Options considered</h3>
+  <ul>
+    <li>Keep Medium everywhere: exact match to ECP's Fabric One bar and Marketplace buttons.</li>
+    <li>Small for the toolbar only: lighter, sits closer in weight to the 28px filter chips, but reads lighter than ECP.</li>
+  </ul>
+  <div class="decision"><b>Decision.</b> Toolbar controls at QUIX Small because the hub toolbar packs many controls into a small space. Drawer, modal and Workspace buttons stay Medium like ECP. The assistant's recommendation was Medium for consistency; the designer chose Small for density and kept the reasoning on record so it can be reversed.</div>
+</section>
+
+<!-- 4 -->
+<section class="sec" id="d4">
+  <h2><span class="num">4</span>Page layout and pagination</h2>
+  <div class="q"><span>Question raised</span>If we follow ECP, our table should be surrounded by a white background and pagination should use the same pattern as the ECP page. Show a couple of options for how the grey background shows.</div>
+  <h3>Evidence</h3>
+  <p>ECP Fabric One places Search, Location and State filters, the table and the footer in one white card on a grey page. The footer reads "Showing 1–10 of 51 items", "‹ 1 of 6 Pages ›" with an editable page box, and "10 ▾ items per page".</p>
+  <h3>Options considered</h3>
+  <figure><img src="images/option-A.png" alt="Option A"><figcaption><b>A, one card.</b> Toolbar, table and pagination inside one white card on the grey page. Closest to ECP.</figcaption></figure>
+  <div class="two">
+    <figure><img src="images/option-B.png" alt="Option B"><figcaption><b>B, white band plus card.</b> Toolbar stays on a full-width white band; table and pagination share a card below.</figcaption></figure>
+    <figure><img src="images/option-C.png" alt="Option C"><figcaption><b>C, tinted header.</b> Same card as A with the toolbar in a grey header strip inside the card.</figcaption></figure>
+  </div>
+  <figure><img src="images/hub-option-A-final.png" alt="Option A built"><figcaption>Option A as built: card aligned to the phase tiles (max 1352px), ECP pagination footer, table flush inside the card with no second border.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Option A. The toolbar is no longer sticky, matching ECP. Pagination follows ECP exactly, including a typeable page number, and the noun is "items" to match ECP. It now shows whenever there are results instead of hiding under ten rows.</div>
+</section>
+
+<!-- 5 -->
+<section class="sec" id="d5">
+  <h2><span class="num">5</span>Toolbar alignment and the Expand / Collapse button</h2>
+  <div class="q"><span>Question raised</span>Make Expand All / Collapse All a button, and make the two rows the same width so it looks clean. Later: why did the recommendation get wider, and should we drop "All" to shorten the label?</div>
+  <h3>Evidence</h3>
+  <p>The first row holds two toggle groups; the second holds Collapse, Sort and Filters. Their natural widths differed by about 55px. When Sort later moved to the bolder 14px select-filter label, it needed about 30px more, which is exactly what dropping "All" from the Collapse label recovers.</p>
+  <figure><img src="images/hub-toolbar-aligned.png" alt="Toolbar with aligned clusters"><figcaption>Both right-hand rows share one fixed-width cluster: toggle segments stretch evenly in row one, Sort absorbs the remainder in row two.</figcaption></figure>
+  <h3>Options considered</h3>
+  <ul>
+    <li>Keep "Collapse All" and widen the cluster to 470px.</li>
+    <li>Rename to "Collapse" / "Expand" and keep the cluster at its original width; the chevrons icon, tooltip and accessible name keep the full meaning.</li>
+    <li>Icon-only button: shortest, but less discoverable.</li>
+  </ul>
+  <div class="decision"><b>Decision.</b> QUIX outline button labelled "Expand" / "Collapse", with "Expand every design" and "Collapse every design" in the tooltip and "Expand all designs" / "Collapse all designs" as the accessible name. Clusters fixed at 440px, later 400px when the toolbar moved to Small.</div>
+</section>
+
+<!-- 6 -->
+<section class="sec" id="d6">
+  <h2><span class="num">6</span>Filter control styling</h2>
+  <div class="q"><span>Question raised</span>Should we use buttons or something closer to ECP's filter controls so it is subtle? Show what the recommendation looks like.</div>
+  <h3>Evidence</h3>
+  <ul>
+    <li>QUIX button-outline: 1px stroke in the darker secondary stroke (#a4aab7), near-black Bold label. Our Collapse and Filters matched this spec exactly.</li>
+    <li>QUIX Data Filters pattern, which ECP's Search / Location / State / All Filters use: 1px light stroke (#e1e3e7), grey Bold 14px label, white fill; applied state turns label and stroke blue; count in a pale blue pill.</li>
+    <li>QUIX button-toggle spec is stronger than ours (dark stroke, solid blue selected), so our toggles were already the softer reading.</li>
+  </ul>
+  <figure><img src="images/filter-restyle-mock.png" alt="Current versus recommended filter controls"><figcaption>Top: current. Middle: recommended idle. Bottom: recommended with one filter applied. Collapse keeps its outline because it performs an action; Sort and Filters take the Data Filters styling.</figcaption></figure>
+  <figure><img src="images/toolbar-final-states.png" alt="Final toolbar states"><figcaption>As built: idle and one-filter-applied states, with the pale blue count pill replacing the solid blue dot.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Restyle Sort and Filters to the Data Filters pattern, keep Collapse as an outline button, keep the toggle groups. ECP Marketplace's "All / Featured / Popular" strip was considered for the toggles and rejected because it is a category tab bar, not a view switch.</div>
+</section>
+
+<!-- 7 -->
+<section class="sec" id="d7">
+  <h2><span class="num">7</span>Review against the December 2026 Fabric One designs</h2>
+  <div class="q"><span>Question raised</span>Take a look at the latest ECP design in Figma. Anything we need to alert or adjust?</div>
+  <h3>Evidence</h3>
+  <figure><img src="images/ecp-inventory-table.png" alt="ECP Fabric Interconnect Inventory design"><figcaption>Fabric Interconnect Inventory, December 2026 prototype page. One white card on a grey page, light filter fields, sort glyphs on every sortable header, ECP pagination footer, outlined status badges, a "Preview" badge beside the title.</figcaption></figure>
+  <div class="two">
+    <figure><img src="images/ecp-badge-outline.png" alt="ECP status badge, enlarged"><figcaption>Status badge is QUIX badge-outline, Medium, Success: 24px, stroke #7cde9a, fill #dffbe5. Our badges already used these colours but were 22px.</figcaption></figure>
+    <figure><img src="images/ecp-badge-preview.png" alt="ECP Preview badge, enlarged"><figcaption>Hero badge is QUIX badge-solid, Large, Warning: 32px, solid yellow, 16px label.</figcaption></figure>
+  </div>
+  <figure><img src="images/hub-sort-headers.png" alt="Hub table header with sort indicators"><figcaption>Added: sort indicators on Design, Account Executive and Status. Active column turns blue with a single chevron; the toolbar Sort select stays in sync.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Layout, filters and pagination confirmed as already matching. Adjusted: sort indicators added to sortable headers; status badges moved from 22px to the 24px QUIX Medium height. Noted for later: confirm the badge variant with the ECP team, consider a "Preview" badge if the product ships as a preview, consider a QUIX icon-button for the row action.</div>
+</section>
+
+<!-- 8 -->
+<section class="sec" id="d8">
+  <h2><span class="num">8</span>Quick filters on the page versus the Filters drawer</h2>
+  <div class="q"><span>Question raised</span>We have filters in the side drawer and additional filters on the page. What should we do?</div>
+  <h3>Evidence</h3>
+  <p>The inline tiles and the drawer already drove one shared state. The duplication was visual: Proposal Status and Needs Attention appeared as tiles, again in the drawer, and a third time as chips. ECP Fabric One itself repeats its primary inline filters inside "All Filters" with one count pill, so inline plus drawer is the sanctioned QUIX Data Filters pattern.</p>
+  <figure><img src="images/filters-options.png" alt="Filter placement options"><figcaption>Row 1: current. Row 2: option 1 toolbar, tiles renamed "Proposal Status", chips limited to drawer-only filters. Row 3: option 1 drawer with the quick filters grouped at the top. Row 4: option 2, an ECP-style select filter plus a Needs Attention toggle.</figcaption></figure>
+  <h3>Options considered</h3>
+  <ul>
+    <li><b>Option 1, keep both and tidy the roles.</b> Tiles stay because their live counts are the work-queue value; chips stop echoing the tiles; the drawer makes the mirroring explicit.</li>
+    <li><b>Option 2, ECP-literal inline select filters.</b> Shorter bar, but the per-status counts disappear until the dropdown opens.</li>
+    <li><b>Option 3, drawer only.</b> Cleanest toolbar, hides the counts users touch most.</li>
+  </ul>
+  <div class="decision"><b>Decision.</b> Option 1. Tile group labelled "Proposal Status"; chips show only filters without an inline control; the drawer opens with a "Quick Filters" section (Proposal Status, Needs Attention, noted as also shown in the toolbar) above an "All Filters" section. The Filters pill keeps counting every applied filter, as ECP does.</div>
+</section>
+
+<!-- 9 -->
+<section class="sec" id="d9">
+  <h2><span class="num">9</span>Flat view: two statuses in one column</h2>
+  <div class="q"><span>Question raised</span>Remind me why we have two statuses in the Status column at the same time. Will it cause confusion? What do we do?</div>
+  <h3>Evidence</h3>
+  <ul>
+    <li>Flat view shows one proposal per row. The top badge was the proposal's own status (In Review, Accepted, Rejected); the bottom badge was the status of the design option it belongs to (In Progress, Shared with Customer, Customer Rejected, Finalized). "Accepted" above "Customer Rejected" is valid data but reads as a contradiction.</li>
+    <li>QUIX asks for one value per cell so sorting and filtering stay predictable. The newly added Status sort was sorting by the solution's status, a value not shown in Flat view at all, which the stacked cell hid.</li>
+    <li>Earlier in the casing pass, splitting had been proposed and deferred by the designer; the question was reopened once the sort behaviour surfaced.</li>
+  </ul>
+  <figure><img src="images/flat-status-split.png" alt="Stacked status versus split columns"><figcaption>Mock at 1440px. Top: stacked Status column. Bottom: Proposal Status and Option Status as separate sortable columns with rebalanced widths. The mock exposed the real cost: nine columns in 1300px.</figcaption></figure>
+  <h3>Options considered</h3>
+  <ul>
+    <li>Split into two columns and rebalance widths: clearest, each column sortable; costs width.</li>
+    <li>Keep one cell and add "Proposal" / "Option" captions: no width cost, sorting still undefined.</li>
+    <li>Proposal status in the column, option status in the meta line: one value per cell, option status loses prominence.</li>
+  </ul>
+  <figure><img src="images/flat-split-final.png" alt="Flat view as built"><figcaption>As built. Zero clipped proposal names and zero clipped opportunity ids at 1440px; the "Account Executive" header truncates with a tooltip. Below 1300px the card scrolls horizontally instead of crushing the Proposal column.</figcaption></figure>
+  <div class="decision"><b>Decision.</b> Split. Proposal Status orders In Review, Accepted, Rejected; Option Status orders the option lifecycle; both reverse on a second click and appear in the Sort select only while Flat view is active. Grouped view is unchanged because its option and proposal rows already show their statuses separately.</div>
+</section>
+
+<!-- Appendix -->
+<section class="sec" id="appendix">
+  <h2>Appendix</h2>
+  <h3>QUIX specs read from the component library (Figma, QUIX Component Library v2)</h3>
+  <table>
+    <tr><th>Component</th><th>Values used</th></tr>
+    <tr><td>button-solid / button-outline / button-borderless</td><td>Large 40px · 16px Bold · 16px padding; Medium 36px · 14px Bold · 16px; Small 32px · 12px Bold · 12px. Outline stroke #a4aab7 (action/secondary/stroke), label #242932.</td></tr>
+    <tr><td>button-toggle / button-toggle-group</td><td>Same three heights. Spec: unselected stroke #5a657b, selected fill #086ae3 with white label. Prototype uses a softer blue-fill selected state.</td></tr>
+    <tr><td>Data Filters pattern, select-filter, _button-filter</td><td>36px fields, stroke #e1e3e7 (input/field/stroke), label #5a657b Bold 14; _button-filter hover fill #ebf4fe, text #0655b6.</td></tr>
+    <tr><td>badge-outline (Medium, Success)</td><td>24px, radius pill, stroke #7cde9a, fill #dffbe5, 12px side padding.</td></tr>
+    <tr><td>badge-solid (Large, Warning)</td><td>32px, fill #fdb90d, text #242932, 16px label.</td></tr>
+    <tr><td>global-header</td><td>60px. Used as the ruler to normalise screenshots taken at different zoom levels.</td></tr>
+  </table>
+  <h3>ECP references</h3>
+  <div class="two">
+    <figure><img src="images/ecp-fabric-one-live.png" alt="ECP Fabric One live"><figcaption>Fabric One, live portal, November 2026.</figcaption></figure>
+    <figure><img src="images/ecp-pricing-drawer.png" alt="ECP Interconnect Pricing drawer design"><figcaption>Interconnect Pricing drawer, December 2026 design: header with close icon, bordered list, single primary Close in the footer.</figcaption></figure>
+  </div>
+  <h3>Open items</h3>
+  <ul>
+    <li>Confirm with the ECP design team whether outlined badges are the target variant for all status badges.</li>
+    <li>Decide whether Solution Designer carries a "Preview" badge beside the page title at launch.</li>
+    <li>Consider a QUIX icon-button for the row "⋯" action to match the December designs.</li>
+    <li>Mirror the text and layout changes into the Figma hub frame in GTST | R5 once the design settles.</li>
+  </ul>
+  <h3>Links</h3>
+  <ul>
+    <li>QUIX Design System documentation: <a href="https://quix.equinix.com/40184d3a9/p/022459-quix-design-system">https://quix.equinix.com/40184d3a9/p/022459-quix-design-system</a></li>
+    <li>QUIX Component Library v2 (Figma): <a href="https://www.figma.com/design/ZQE9aXwYyHHoqrWbjOysn6/%F0%9F%A7%A9-QUIX-Component-Library-v2?m=auto&node-id=356-0">https://www.figma.com/design/ZQE9aXwYyHHoqrWbjOysn6</a></li>
+  </ul>
+  <h3>Files</h3>
+  <ul>
+    <li>Prototype: <code>2026_1116/Solution Designer.html</code> (single-file React, QUIX tokens, in-file router).</li>
+    <li>No-access page: <code>2026_1116/No Access.html</code>.</li>
+    <li>This log and its images: <code>2026_1116/Solution Hub Decision Log/</code>.</li>
+  </ul>
+</section>
+
+
+  </main>
+</div>
+<footer class="site"><span>Equinix UX · Solution Designer</span><span>Built with QUIX tokens</span><span><a href="Solution%20Hub%20Decision%20Log.pdf">Download PDF</a></span></footer>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('#leftnav a.item'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function setOn(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setOn(e.target.id);});},{rootMargin:'-96px 0px -70% 0px',threshold:0});
+  targets.forEach(function(t){if(t)io.observe(t);});
+  setOn(targets[0].id);
+  var q=document.getElementById('navSearch');
+  q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();links.forEach(function(a){a.style.display=!v||a.textContent.toLowerCase().indexOf(v)>-1?'':'none';});});
+})();
+</script>
+</body></html>

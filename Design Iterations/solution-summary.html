@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solution Summary — Design Iterations</title>
+<link rel="stylesheet" href="site.css">
+<style>
+  h2{font:800 22px/30px "Nexa Text","Noto Sans",Arial,sans-serif;margin:0 0 4px;color:var(--ink)}
+  h3{font:700 14px/20px "Nexa Text","Noto Sans",Arial,sans-serif;margin:22px 0 6px;color:var(--text);letter-spacing:.02em}
+  p{margin:0 0 10px}
+  .sub{color:var(--text);font-size:14px;margin-bottom:28px}
+  .meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--text);font-size:13px;margin-bottom:24px}
+  .meta b{color:var(--ink);font-weight:700}
+  .card{border:1px solid var(--line);border-radius:6px;padding:20px 24px;margin:0 0 20px;background:#fff}
+  .method{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0 4px}
+  .step{background:var(--fill);border-radius:6px;padding:12px 14px;font-size:13px;line-height:19px}
+  .step b{display:block;color:var(--blue);font-size:12px;margin-bottom:4px}
+  table{border-collapse:collapse;width:100%;font-size:13px;line-height:19px}
+  th{text-align:left;background:var(--fill);color:var(--text);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .sec{margin-top:44px;padding-top:28px;border-top:2px solid var(--line)}
+  .num{display:inline-block;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--soft);color:var(--blue);font:700 13px/28px "Nexa Text","Noto Sans",Arial,sans-serif;text-align:center;margin-right:10px;vertical-align:middle}
+  .q{background:var(--fill);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0 16px;color:var(--ink)}
+  .q span{color:var(--text);font-size:12px;display:block;margin-bottom:2px}
+  figure{margin:14px 0 18px}
+  figure img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+  figcaption{font-size:12px;line-height:18px;color:var(--text);margin-top:6px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .decision{border:1px solid #7cde9a;background:var(--greenfill);border-radius:6px;padding:12px 16px;margin-top:14px}
+  .decision b{color:var(--green)}
+  ul{margin:0 0 10px 18px;padding:0}li{margin:0 0 4px}
+  .pill{display:inline-block;height:22px;padding:0 10px;border-radius:999px;background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a;font:400 12px/22px "Nexa Text","Noto Sans",Arial,sans-serif}
+  .pill.grey{background:var(--fill);color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+  code{font:12px/18px ui-monospace,Menlo,monospace;background:var(--fill);padding:1px 5px;border-radius:3px}
+  @media print{
+    .sec{break-before:page}
+    @page{size:A4 landscape;margin:12mm}
+    body{font-size:12px;line-height:18px}
+
+    .sec{break-before:page;border-top:none;margin-top:0;padding-top:0}
+    figure,.decision,tr{break-inside:avoid}
+
+    .method{gap:8px}.step{font-size:11px;line-height:16px}
+    a{color:#086ae3;text-decoration:underline}
+  }
+
+  .content .card h2{font:800 22px/30px var(--font)}
+
+  .content .card h2{font:800 22px/30px var(--font)}
+  .status{display:inline-block;margin-left:10px;vertical-align:middle;height:22px;padding:0 10px;border-radius:999px;font:700 11px/22px var(--font);text-transform:uppercase;letter-spacing:.04em}
+  .status.proposed{background:#fff4de;color:#8a5300;box-shadow:inset 0 0 0 1px #f5cf8a}
+  .status.built{background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a}
+  .status.open{background:var(--soft);color:var(--blue-hover);box-shadow:inset 0 0 0 1px #9cc7fc}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="images/equinix-logo.png" alt="Equinix"><span>DESIGN ITERATIONS</span></a>
+  <span class="version">v2026.11.18</span>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="index.html" class="active">Solution Designer</a>
+    <a href="ai-projects.html">AI Projects</a>
+    <a href="../Solution%20Designer.html" class="ext" target="_blank" rel="noopener">Prototype</a>
+  </nav>
+  <label class="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="navSearch" type="search" placeholder="Search" aria-label="Search this log"></label>
+</header>
+<div class="doc">
+  <aside class="leftnav" id="leftnav"><a class="grp plain" href="solution-hub.html" style="text-decoration:none">Solution Hub <span class="chev"></span></a><div class="grp">Solution Summary <span class="chev"></span></div><div class="sub"><a class="item" href="#method">How to read this log</a><a class="item" href="#d1">Drawer vs page gaps<small>Review 1</small></a><a class="item" href="#d2">Information additions<small>Mock 2</small></a><a class="item" href="#d3">Layout restructure<small>Mock 3</small></a><a class="item" href="#d4">Boxed content, options A–C<small>Mock 4</small></a><a class="item" href="#d5">Option C full page<small>Mock 4b</small></a><a class="item" href="#next">Next steps</a></div><a class="grp plain" href="solution-proposal.html" style="text-decoration:none">Solution Proposal <span class="chev"></span></a><a class="grp plain" href="whiteboard.html" style="text-decoration:none">Whiteboard <span class="chev"></span></a><a class="grp plain" href="builder-integration.html" style="text-decoration:none">Builder Integration <span class="chev"></span></a></aside>
+  <main class="content">
+    <a class="open" href="Solution%20Summary%20Review.pdf" title="Download as PDF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg></a>
+    <h1 class="big">Solution Summary</h1>
+    <p class="lede">How the Solution Overview page for a design option should carry the information the hub drawer already shows, and how its layout should follow the ECP detail-page patterns. Four mock-ups, one review, decision pending.</p>
+    <div class="kv"><div><b>Area</b> Solution Overview page for a design option</div><div><b>Period</b> November 18, 2026</div><div><b>Status</b> Mock-ups proposed, decision pending</div><div><b>References</b> Fabric One Figma (Oct 2026 page), hub details drawer</div></div>
+<div class="card" id="method">
+  <h2>How to read this log</h2>
+  <p>The Solution Overview page for a design option ("Solution Summary") was reviewed against the hub's details drawer and against ECP detail pages in the Fabric One Figma file. Each entry records the question, the evidence, the mock-ups rendered on the live prototype, and where the decision stands. Items marked <span class="status proposed">Proposed</span> are mock-ups awaiting a decision; nothing in this log has been built into the prototype yet.</p>
+</div>
+<section class="sec" id="d1">
+  <h2><span class="num">1</span>Drawer vs page: what the Option page is missing<span class="status open">Open question</span></h2>
+  <div class="q"><span>Question raised</span>Review the side drawer information in each tab. Do we have missing information on the Solution Summary option page? If I click Option 1, it should have the information.</div>
+<h3>Evidence</h3><p>The drawer has three tabs. The Option 1 page shows Account, Contacts, Solution Summary, Customer Requested Date, Products and a Proposals list.</p><div class="two"><figure><img src="images/drawer-overview.png" alt=""><figcaption>Drawer, Overview tab: account facts, Salesforce links, approvals by option, contacts.</figcaption></figure><figure><img src="images/drawer-options.png" alt=""><figcaption>Drawer, Options tab: per-option status, draw cap, cabinets, CabE, time elapsed, space request, signed, quote, requests and proposals.</figcaption></figure></div><div class="two"><figure><img src="images/drawer-cases.png" alt=""><figcaption>Drawer, Cases tab: linked Salesforce cases in the ECP date format.</figcaption></figure><figure><img src="images/option-page-current.png" alt=""><figcaption>Solution Overview page for Option 1 as it is today.</figcaption></figure></div><h3>Findings</h3><table><tr><th>Drawer tab</th><th>Field</th><th>On the Option 1 page</th></tr><tr><td>Overview</td><td>Account Type, Time Elapsed, Last Updated, Order Signed</td><td>Missing</td></tr><tr><td>Overview</td><td>Opportunity link, Cases and Requests summary, Approvals by option</td><td>Missing</td></tr><tr><td>Options</td><td>Option status badge, IBX as an attribute, Space Request, Signed</td><td>Missing or only as a note in the Proposals list</td></tr><tr><td>Options</td><td>Requests table with REQ links</td><td>Missing</td></tr><tr><td>Cases</td><td>Case number, subject, opened, priority</td><td>Missing</td></tr></table><h3>Data conflicts found</h3><ul><li>Account Executive is Jordan Hale in the drawer's Overview tab but Lee Park in Contacts and on the page.</li><li>Dana Ruiz is titled Solution Engineer in the drawer, Sales Engineer in Contacts and Prepared By.</li><li>Customer Requested Date is "—" in the drawer but "Dec 15, 2026" on the page, which falls back to a default date.</li><li>Proposal status: the hub says Accepted with option Customer Rejected; the page says In Review and Not reviewed. Two vocabularies for one record.</li><li>The Option 1 page lists proposals for both options.</li></ul><div class="decision"><b>Where it stands.</b> The gaps and conflicts are confirmed. Fixing the four data conflicts needs one source of truth for the drawer and the page regardless of which layout is chosen below.</div>
+</section>
+<section class="sec" id="d2">
+  <h2><span class="num">2</span>Information additions on the current layout<span class="status proposed">Proposed</span></h2>
+  <div class="q"><span>Question raised</span>Mock it first.</div>
+<h3>Mock-up</h3><figure><img src="images/option-page-additions.png" alt=""><figcaption>Current layout with an Option block at the top, Requests and Cases after Products, and Proposals limited to this option. Blue NEW tags mark additions.</figcaption></figure><h3>Notes</h3><ul><li>Adds everything the drawer knows without changing the page structure.</li><li>The mock accidentally hid Option 1's own proposal card together with Option 2's; the build would keep it.</li></ul><div class="decision"><b>Where it stands.</b> Superseded by the layout review in entry 3: the additions are needed, but the four-column boxed grids and the left rail do not match how ECP composes detail pages.</div>
+</section>
+<section class="sec" id="d3">
+  <h2><span class="num">3</span>Layout restructure to QUIX detail-page patterns<span class="status proposed">Proposed</span></h2>
+  <div class="q"><span>Question raised</span>For the layout, does this page match QUIX style? Anything we need to adjust, or your recommendation?</div>
+<h3>Assessment</h3><p>The components were QUIX-like but the page was not composed like an ECP detail page: identity split across three bars, four-column grids with boxed cells, a documentation-style left rail, a duplicated breadcrumb, mixed label casing and hard-coded greys.</p><h3>Mock-up</h3><figure><img src="images/option-page-restructure.png" alt=""><figcaption>Page header with title, status badge, IBX chip and actions; tabs instead of the left rail; one breadcrumb; key-value lists for Option Details and Account; Title Case labels; token colours; plus Requests, Cases and option-scoped Proposals.</figcaption></figure><h3>Trade-offs</h3><ul><li>Four actions in the header is the upper limit; Print SDD and Share could move to an action menu.</li><li>Tabs mean moving the Files and History routes out of the rail; straightforward in the prototype.</li></ul><div class="decision"><b>Where it stands.</b> Recommended direction, then refined by entry 4 after the designer pointed out that ECP keeps all content inside white cards.</div>
+</section>
+<section class="sec" id="d4">
+  <h2><span class="num">4</span>Boxed content: three ECP card patterns<span class="status proposed">Proposed</span></h2>
+  <div class="q"><span>Question raised</span>In Fabric One the content is always inside the white box. Show me mock-ups with that, using the different use cases in the file.</div>
+<h3>Evidence from the Fabric One file</h3><div class="two"><figure><img src="images/ecp-ref-interconnect-detail.png" alt=""><figcaption>Interconnect detail: one white card per section under the tabs, each with its own action.</figcaption></figure><figure><img src="images/ecp-ref-cloud-router-detail.png" alt=""><figcaption>Cloud Router detail: header on white, one panel holding tabs and stacked inner cards, big-number summary first.</figcaption></figure></div><figure><img src="images/ecp-ref-dashboard.png" alt=""><figcaption>Interconnection dashboard: a grid of white cards with a narrower supporting column.</figcaption></figure><h3>Options</h3><figure><img src="images/option-cards-A.png" alt=""><figcaption>Option A, one card per section: Option Details, Account, Contacts, Solution Summary, Products, Requests, Cases, Proposals, each with its own action. Closest to the Fabric One detail pages.</figcaption></figure><figure><img src="images/option-cards-B.png" alt=""><figcaption>Option B, one panel with inner cards: header on a white band, big-number summary first, contacts side by side. The most dashboard-like, but cards inside a card is the heaviest of the three.</figcaption></figure><figure><img src="images/option-cards-C.png" alt=""><figcaption>Option C, two-column card grid: the design in the main column, account context in a 380px side column. Fits one screen at 1440px; needs a responsive rule below about 1200px.</figcaption></figure><div class="decision"><b>Where it stands.</b> Assistant recommendation: A for the first build because it matches the Fabric One detail pages reviewers will compare against, with C as the strong alternative for scannability. Decision pending.</div>
+</section>
+<section class="sec" id="d5">
+  <h2><span class="num">5</span>Option C at full page<span class="status proposed">Proposed</span></h2>
+  <div class="q"><span>Question raised</span>Show me C as a full page so I can see all the information.</div>
+<p>Option C was shown live and as a full-page render. Main column: Option Details with big numbers, Solution Summary, Products, Proposals. Side column: Account, Contacts with a View emails link, Requests with View all, Cases. All drawer information is present and the page fits a single 1440px screen.</p><figure><img src="images/option-c-full-page.png" alt=""><figcaption>Option C at full page, 1440px. Main column: Option Details with the four big numbers above status, IBX, space request, signed, design number, quote, opportunity and solution; Solution Summary with assumptions and the requested date; Products; Proposals for this option with a link to Option 2. Side column: Account, Contacts, Requests, Cases.</figcaption></figure><div class="decision"><b>Where it stands.</b> Awaiting the choice between A and C. Either build also fixes the data conflicts from entry 1 and keeps the header, tabs, single breadcrumb and Title Case labels from entry 3.</div>
+</section>
+<section class="sec" id="next"><h2>Next steps</h2><ul><li>Choose Option A or C and build it into the Solution Overview page.</li><li>Make the drawer and the page read the same fields: Account Executive, engineer title, requested date, proposal status.</li><li>Decide whether the Option page shows only its own proposals.</li></ul></section>
+  </main>
+</div>
+<footer class="site"><span>Equinix UX · Solution Designer</span><span>Built with QUIX tokens</span><span><a href="Solution%20Summary%20Review.pdf">Download PDF</a></span></footer>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('#leftnav a.item'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function setOn(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setOn(e.target.id);});},{rootMargin:'-96px 0px -70% 0px',threshold:0});
+  targets.forEach(function(t){if(t)io.observe(t);});
+  if(targets[0])setOn(targets[0].id);
+  var q=document.getElementById('navSearch');
+  q&&q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();links.forEach(function(a){a.style.display=!v||a.textContent.toLowerCase().indexOf(v)>-1?'':'none';});});
+})();
+</script>
+</body></html>

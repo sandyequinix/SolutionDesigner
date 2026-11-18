@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builder Integration — Design Iterations</title>
+<link rel="stylesheet" href="site.css">
+<style>
+  h2{font:800 22px/30px "Nexa Text","Noto Sans",Arial,sans-serif;margin:0 0 4px;color:var(--ink)}
+  h3{font:700 14px/20px "Nexa Text","Noto Sans",Arial,sans-serif;margin:22px 0 6px;color:var(--text);letter-spacing:.02em}
+  p{margin:0 0 10px}
+  .sub{color:var(--text);font-size:14px;margin-bottom:28px}
+  .meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--text);font-size:13px;margin-bottom:24px}
+  .meta b{color:var(--ink);font-weight:700}
+  .card{border:1px solid var(--line);border-radius:6px;padding:20px 24px;margin:0 0 20px;background:#fff}
+  .method{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0 4px}
+  .step{background:var(--fill);border-radius:6px;padding:12px 14px;font-size:13px;line-height:19px}
+  .step b{display:block;color:var(--blue);font-size:12px;margin-bottom:4px}
+  table{border-collapse:collapse;width:100%;font-size:13px;line-height:19px}
+  th{text-align:left;background:var(--fill);color:var(--text);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .sec{margin-top:44px;padding-top:28px;border-top:2px solid var(--line)}
+  .num{display:inline-block;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--soft);color:var(--blue);font:700 13px/28px "Nexa Text","Noto Sans",Arial,sans-serif;text-align:center;margin-right:10px;vertical-align:middle}
+  .q{background:var(--fill);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0 16px;color:var(--ink)}
+  .q span{color:var(--text);font-size:12px;display:block;margin-bottom:2px}
+  figure{margin:14px 0 18px}
+  figure img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+  figcaption{font-size:12px;line-height:18px;color:var(--text);margin-top:6px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .decision{border:1px solid #7cde9a;background:var(--greenfill);border-radius:6px;padding:12px 16px;margin-top:14px}
+  .decision b{color:var(--green)}
+  ul{margin:0 0 10px 18px;padding:0}li{margin:0 0 4px}
+  .pill{display:inline-block;height:22px;padding:0 10px;border-radius:999px;background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a;font:400 12px/22px "Nexa Text","Noto Sans",Arial,sans-serif}
+  .pill.grey{background:var(--fill);color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+  code{font:12px/18px ui-monospace,Menlo,monospace;background:var(--fill);padding:1px 5px;border-radius:3px}
+  @media print{
+    .sec{break-before:page}
+    @page{size:A4 landscape;margin:12mm}
+    body{font-size:12px;line-height:18px}
+
+    .sec{break-before:page;border-top:none;margin-top:0;padding-top:0}
+    figure,.decision,tr{break-inside:avoid}
+
+    .method{gap:8px}.step{font-size:11px;line-height:16px}
+    a{color:#086ae3;text-decoration:underline}
+  }
+
+  .content .card h2{font:800 22px/30px var(--font)}
+
+  .content .card h2{font:800 22px/30px var(--font)}
+  .status{display:inline-block;margin-left:10px;vertical-align:middle;height:22px;padding:0 10px;border-radius:999px;font:700 11px/22px var(--font);text-transform:uppercase;letter-spacing:.04em}
+  .status.proposed{background:#fff4de;color:#8a5300;box-shadow:inset 0 0 0 1px #f5cf8a}
+  .status.built{background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a}
+  .status.open{background:var(--soft);color:var(--blue-hover);box-shadow:inset 0 0 0 1px #9cc7fc}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="images/equinix-logo.png" alt="Equinix"><span>DESIGN ITERATIONS</span></a>
+  <span class="version">v2026.11.18</span>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="index.html" class="active">Solution Designer</a>
+    <a href="ai-projects.html">AI Projects</a>
+    <a href="../Solution%20Designer.html" class="ext" target="_blank" rel="noopener">Prototype</a>
+  </nav>
+  <label class="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="navSearch" type="search" placeholder="Search" aria-label="Search this log"></label>
+</header>
+<div class="doc">
+  <aside class="leftnav" id="leftnav"><a class="grp plain" href="solution-hub.html" style="text-decoration:none">Solution Hub <span class="chev"></span></a><a class="grp plain" href="solution-summary.html" style="text-decoration:none">Solution Summary <span class="chev"></span></a><a class="grp plain" href="solution-proposal.html" style="text-decoration:none">Solution Proposal <span class="chev"></span></a><a class="grp plain" href="whiteboard.html" style="text-decoration:none">Whiteboard <span class="chev"></span></a><div class="grp">Builder Integration <span class="chev"></span></div><div class="sub"><a class="item" href="#context">Context</a><a class="item" href="#d1">Builder patterns<small>Review 1</small></a><a class="item" href="#d2">Handoff issues<small>Review 2</small></a><a class="item" href="#d3">Handoff mode mock-up<small>Mock 3</small></a><a class="item" href="#open">Open questions for the Builder team</a></div></aside>
+  <main class="content">
+    <a class="open" href="Builder%20Integration%20Review.pdf" title="Download as PDF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg></a>
+    <h1 class="big">Builder Integration</h1>
+    <p class="lede">How Solution Builder (digital connections) and Solution Designer (physical colocation) should hand off to each other when a user configures a cabinet: what Builder does today, what breaks in the jump, and a handoff-mode mock-up of the Proposals page.</p>
+    <div class="kv"><div><b>Area</b> Solution Builder → Solution Designer handoff</div><div><b>Period</b> November 18, 2026</div><div><b>Status</b> Review complete, mock-up proposed</div><div><b>References</b> Click-to-Deploy SB Q4 2025 Figma, Designer Proposals page</div></div>
+<div class="card" id="context"><h2>Context</h2><p>Solution Builder (Figma: Click-to-Deploy SB, Q4 2025) handles digital connections: virtual devices, Fabric ports, cloud routers, connections. Solution Designer handles the physical colocation side: cages, cabinets, power, cabling. The two should connect: when a user adds a Secure Cabinet Express or Private Cage on the Builder canvas and chooses to configure it, they land in Solution Designer's Proposals page to design the cabinet, then return to Builder.</p><div class="two"><figure><img src="images/sb-live-canvas.png" alt=""><figcaption>Solution Builder today: ECP shell, grey canvas, Resources panel, resource nodes with status badges, selection mini toolbar, zoom stack bottom right.</figcaption></figure><figure><img src="images/designer-proposals-current.png" alt=""><figcaption>Solution Designer Proposals page today: own header and module tabs, white canvas, left panel, floating legend and bottom drawing toolbar.</figcaption></figure></div></div>
+<section class="sec" id="d1">
+  <h2><span class="num">1</span>How Solution Builder works<span class="status built">Built</span></h2>
+  <div class="q"><span>Question raised</span>Review the pattern on the Builder app and let me know any issue when the user navigates from Builder to Designer.</div>
+<ul><li>Lives inside the ECP shell. Its bar reads "Solution Builder › Untitled Solution · Saved" with Local currency, Show Pricing, share, download and Order Solution. It autosaves.</li><li>Resource nodes are white cards: dashed border while pending, solid once configured, with summary lines such as "Amsterdam | AM1 · Single Phase Circuit · Cross Connect Package".</li><li>Secure Cabinet Express is edited in a drawer: name, IBX table with availability and monthly charge per kVA, cabinet cards with circuit and PDU pairs and prices, draw cap tiles. It is Internal Beta and "does not support deploy at this time".</li><li>After Order Solution the canvas becomes View Only; nodes show Provisioning, Provisioned or Failed.</li></ul><div class="two"><figure><img src="images/sb-not-supported.png" alt=""><figcaption>Secure Cabinet Express and Fabric Port nodes marked Deployment Not Supported; a configured SCE node with its summary lines.</figcaption></figure><figure><img src="images/sb-post-order.png" alt=""><figcaption>Post-order state: View Only badge, Order Status action, Provisioning badges and a locked canvas.</figcaption></figure></div><figure><img src="images/sb-sce-drawer.png" alt=""><figcaption>The Edit Secure Cabinet Express drawer: the values entered here are the same attributes the Designer option carries.</figcaption></figure><div class="decision"><b>Where it stands.</b> Reference review complete; this is the pattern the handoff has to feel continuous with.</div>
+</section>
+<section class="sec" id="d2">
+  <h2><span class="num">2</span>Issues when navigating from Builder to Designer<span class="status open">Open question</span></h2>
+  <div class="q"><span>Question raised</span>Let me know your thoughts. I think our canvas background needs to be grey, etc.</div>
+<table><tr><th style="width:32px">#</th><th style="width:22%">Issue</th><th>What differs</th><th>Recommendation</th></tr><tr><td>1</td><td><b>Canvas background</b></td><td>Builder's canvas is grey with white floating panels; Designer's is white with a white side panel.</td><td>Use the QUIX fill grey for the canvas; floor plan, legend and toolbar as white floating cards.</td></tr><tr><td>2</td><td><b>Shell and breadcrumb continuity</b></td><td>Designer opens with its own header and module tabs; the user loses the ECP nav and the Builder breadcrumb.</td><td>Show Solution Builder › SANDVIK › Secure Cabinet Express 1 › Configure Cabinet with a Back action, inside the ECP shell.</td></tr><tr><td>3</td><td><b>Land in the right place with the right data</b></td><td>The Builder drawer already captures name, IBX, cabinet count and draw cap, the same attributes the Option carries.</td><td>Open that cabinet's proposal pre-selected with a context banner carrying the Builder values; no double entry.</td></tr><tr><td>4</td><td><b>Status vocabulary</b></td><td>Builder: Pending Configuration, Ready To Order, Provisioning, Provisioned, Failed, Deployment Not Supported. Designer: In Progress, Shared with Customer, Customer Rejected, Finalized; proposals In Review, Accepted, Rejected.</td><td>Agree one mapped state for the node after the round trip, e.g. Configured in Solution Designer; replace Deployment Not Supported with Order via quote once a quote exists.</td></tr><tr><td>5</td><td><b>Save and return semantics</b></td><td>Builder autosaves; Designer has Save Spatials, Accept and Reject Proposal, Share with Customer.</td><td>One primary action in handoff mode: Done, Return to Solution Builder, which saves and updates the node.</td></tr><tr><td>6</td><td><b>Pricing source</b></td><td>Builder prices from its catalog and can exclude a node from pricing; Designer prices through Salesforce quotes.</td><td>Product decision on which figure the Builder node and Show Pricing use after the handoff.</td></tr><tr><td>7</td><td><b>Terminology</b></td><td>Builder says Secure Cabinet Express; Designer says Private Cage and Proposal.</td><td>Carry the Builder resource name into the Designer header and left panel.</td></tr><tr><td>8</td><td><b>Toolbar placement</b></td><td>Builder keeps zoom and fit bottom right; Designer has zoom top left and a wide bottom toolbar.</td><td>Keep the drawing toolbar; move zoom and fit to a bottom-right stack.</td></tr><tr><td>9</td><td><b>View Only</b></td><td>After Order Solution the Builder canvas is locked.</td><td>Open Designer read-only with the same View Only badge.</td></tr></table><div class="decision"><b>Where it stands.</b> Items 1, 2, 3 and 5 are UI work in Designer and are mocked in entry 3. Items 4, 6 and 7 need agreement with the Builder team.</div>
+</section>
+<section class="sec" id="d3">
+  <h2><span class="num">3</span>Proposals page in handoff mode<span class="status proposed">Proposed</span></h2>
+  <div class="q"><span>Question raised</span>Yes, mock it.</div>
+<figure><img src="images/handoff-mode.png" alt=""><figcaption>Handoff mode rendered on the live Proposals page: ECP shell and nav; Builder breadcrumb with Back and Done actions; grey canvas with the left panel and legend as white floating cards; a context banner carrying the Builder values; zoom stack bottom right. Preview SDD, Share, Save Spatials and Accept/Reject are hidden so there is one way to finish.</figcaption></figure><h3>What the mock does not settle</h3><ul><li>The banner values are static; in the build they come from the Builder resource and pre-select the matching proposal.</li><li>The Done action can only update the Builder node correctly once the status mapping and pricing source are agreed.</li></ul><div class="decision"><b>Where it stands.</b> Mock-up delivered for team review; not built into the prototype.</div>
+</section>
+<section class="sec" id="open"><h2>Open questions for the Builder team</h2><ul><li>Which node state does a configured cabinet show after returning from Designer, and what replaces "Deployment Not Supported"?</li><li>Which price appears on the Builder node: the Designer quote or the Builder catalog price?</li><li>Does Designer open inside the ECP shell for the handoff, or as a separate app with a return link?</li><li>Is "Secure Cabinet Express" the customer-facing name Designer should display for the cabinet?</li></ul></section>
+  </main>
+</div>
+<footer class="site"><span>Equinix UX · Solution Designer</span><span>Built with QUIX tokens</span><span><a href="Builder%20Integration%20Review.pdf">Download PDF</a></span></footer>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('#leftnav a.item'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function setOn(id){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setOn(e.target.id);});},{rootMargin:'-96px 0px -70% 0px',threshold:0});
+  targets.forEach(function(t){if(t)io.observe(t);});
+  if(targets[0])setOn(targets[0].id);
+  var q=document.getElementById('navSearch');
+  q&&q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();links.forEach(function(a){a.style.display=!v||a.textContent.toLowerCase().indexOf(v)>-1?'':'none';});});
+})();
+</script>
+</body></html>

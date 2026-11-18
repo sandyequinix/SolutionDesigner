@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Design Iterations</title>
+<link rel="stylesheet" href="site.css">
+</head><body>
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="images/equinix-logo.png" alt="Equinix"><span>DESIGN ITERATIONS</span></a>
+  <span class="version">v2026.11.18</span>
+  <nav>
+    <a href="about.html" class="active">About</a>
+    <a href="index.html">Solution Designer</a>
+    <a href="ai-projects.html">AI Projects</a>
+    <a href="../Solution%20Designer.html" class="ext" target="_blank" rel="noopener">Prototype</a>
+  </nav>
+  <label class="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" placeholder="Search" aria-label="Search"></label>
+</header>
+
+<div class="doc">
+  <aside class="leftnav">
+    <div class="grp">About <span class="chev"></span></div>
+    <div class="sub">
+      <a class="item on" href="#who">Who</a>
+      <a class="item" href="#approach">Approach</a>
+      <a class="item" href="#tools">Tools and sources</a>
+      <a class="item" href="#contact">Contact</a>
+    </div>
+  </aside>
+  <main class="content">
+    <h1 class="big">About</h1>
+    <p class="lede">This site records how the Solution Designer prototype is being designed with an AI assistant in the loop: every change is traceable to a question, the evidence gathered, the options mocked up and the decision taken.</p>
+
+    <div class="pcard" id="who">
+      <h2>Who</h2>
+      <dl class="fields">
+        <dt>Name</dt><dd>Sandy Chang</dd>
+        <dt>Role</dt><dd>Solution Engineer, Equinix UX</dd>
+        <dt>Product</dt><dd>Solution Designer, part of the Equinix Customer Portal (ECP) experience</dd>
+        <dt>Team</dt><dd>GTST</dd>
+      </dl>
+    </div>
+
+    <div class="pcard" id="approach">
+      <h2>Approach</h2>
+      <p>The assistant does not decide. It gathers evidence, measures, proposes options with mock-ups rendered on the live prototype, states a recommendation and its trade-off, and then builds and verifies what the designer chooses. Each decision is logged with its reasoning so a reviewer can disagree with a specific step rather than with the result.</p>
+      <p>The loop used on every change: <b>question</b> from the designer, usually with an ECP screenshot · <b>evidence</b> from the QUIX library and from measuring both ECP and the prototype at the same scale · <b>options</b> rendered side by side · <b>decision</b> by the designer · <b>verification</b> in the browser.</p>
+    </div>
+
+    <div class="pcard" id="tools">
+      <h2>Tools and sources</h2>
+      <ul>
+        <li><b>QUIX Design System</b>, the Equinix design system: <a href="https://quix.equinix.com/40184d3a9/p/022459-quix-design-system">documentation</a> and the <a href="https://www.figma.com/design/ZQE9aXwYyHHoqrWbjOysn6/%F0%9F%A7%A9-QUIX-Component-Library-v2?m=auto&node-id=356-0">Component Library v2 in Figma</a>, read directly for sizes, colours and patterns.</li>
+        <li><b>Equinix Customer Portal</b>, Fabric One and Marketplace pages, live and as the December 2026 Figma designs, used as the reference implementation.</li>
+        <li><b>Claude</b> (Anthropic) working in Claude Code with the Figma MCP connector and a browser: reads specs from Figma, measures pages, renders mock-ups with headless Chrome, edits the prototype and verifies the result.</li>
+        <li><b>Prototype</b>: a single-file React app styled with QUIX tokens, previewed locally.</li>
+      </ul>
+    </div>
+
+    <div class="pcard" id="contact">
+      <h2>Contact</h2>
+      <dl class="fields"><dt>Name</dt><dd>Sandy Chang</dd><dt>Email</dt><dd><a href="mailto:sachang@equinix.com">sachang@equinix.com</a></dd><dt>Team</dt><dd>GTST · Solution Engineer</dd></dl>
+    </div>
+  </main>
+</div>
+<footer class="site"><span>Equinix UX · Solution Designer</span><span>Built with QUIX tokens</span></footer>
+</body></html>
