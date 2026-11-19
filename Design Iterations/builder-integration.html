@@ -49,6 +49,9 @@
   .status.proposed{background:#fff4de;color:#8a5300;box-shadow:inset 0 0 0 1px #f5cf8a}
   .status.built{background:var(--greenfill);color:var(--green);box-shadow:inset 0 0 0 1px #7cde9a}
   .status.open{background:var(--soft);color:var(--blue-hover);box-shadow:inset 0 0 0 1px #9cc7fc}
+
+  /* "Question raised" notes stay in the markup but are hidden unless the reader turns them on (Shift+Q, or ?notes=1) */
+  body:not(.notes) .q{display:none}
 </style>
 </head><body>
 <header class="topbar">
@@ -100,5 +103,9 @@
   var q=document.getElementById('navSearch');
   q&&q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();links.forEach(function(a){a.style.display=!v||a.textContent.toLowerCase().indexOf(v)>-1?'':'none';});});
 })();
+</script>
+<script>
+(function(){var k='di-notes';try{var u=new URLSearchParams(location.search);if(u.has('notes'))localStorage.setItem(k,u.get('notes')==='0'?'':'1');if(localStorage.getItem(k))document.body.classList.add('notes');}catch(e){}
+document.addEventListener('keydown',function(e){if(e.shiftKey&&(e.key==='Q'||e.key==='q')&&!/input|textarea/i.test(e.target.tagName)){var on=document.body.classList.toggle('notes');try{localStorage.setItem(k,on?'1':'');}catch(x){}}});})();
 </script>
 </body></html>
